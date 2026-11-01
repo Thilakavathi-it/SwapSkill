@@ -1,0 +1,8 @@
+node_modules/
+react-dashboard/node_modules/
+.env
+.env.*
+dist/
+react-dashboard/dist/
+*.log
+vendor/

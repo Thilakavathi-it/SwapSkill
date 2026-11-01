@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SkillSwap</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <div class="logo">
+            Skill<span>Swap</span>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore Skills</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-buttons">
+            <a href="login.html" class="login-btn">Logout</a>
+        </div>
+
+    </header>
+
+
+    <!-- Dashboard -->
+    <main class="dashboard">
+
+        <!-- Welcome -->
+        <section class="dashboard-header">
+
+            <div>
+                <p class="dashboard-label">MY DASHBOARD</p>
+
+                <h1>
+                    Welcome back, <span>Student!</span> 👋
+                </h1>
+
+                <p>
+                    Manage your skills, discover new opportunities
+                    and connect with other students.
+                </p>
+            </div>
+
+            <a href="explore.html" class="primary-btn">
+                Explore Skills
+            </a>
+
+        </section>
+
+
+        <!-- Profile Summary -->
+        <section class="profile-summary">
+
+            <div class="dashboard-avatar">
+                S
+            </div>
+
+            <div class="profile-details">
+
+                <h2>Student Profile</h2>
+
+                <p>Computer Science Student</p>
+
+                <div class="profile-location">
+                    📍 Rajalakshmi Engineering College
+                </div>
+
+            </div>
+
+            <a href="#" class="edit-profile">
+                Edit Profile
+            </a>
+
+        </section>
+
+
+        <!-- Stats -->
+        <section class="dashboard-stats">
+
+            <div class="dashboard-stat">
+                <div class="dashboard-stat-icon">📚</div>
+                <div>
+                    <h3>3</h3>
+                    <p>Skills Teaching</p>
+                </div>
+            </div>
+
+            <div class="dashboard-stat">
+                <div class="dashboard-stat-icon">🎯</div>
+                <div>
+                    <h3>2</h3>
+                    <p>Skills Learning</p>
+                </div>
+            </div>
+
+            <div class="dashboard-stat">
+                <div class="dashboard-stat-icon">🔄</div>
+                <div>
+                    <h3>4</h3>
+                    <p>Active Requests</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Skills -->
+        <section class="dashboard-section">
+
+            <div class="dashboard-section-heading">
+                <div>
+                    <p class="dashboard-label">MY SKILLS</p>
+                    <h2>Skills I Can Teach</h2>
+                </div>
+
+                <a href="#" class="outline-btn">
+                    + Add Skill
+                </a>
+            </div>
+
+
+            <div class="dashboard-skill-grid">
+
+                <div class="dashboard-skill-card">
+                    <div class="dashboard-skill-icon">☕</div>
+
+                    <div>
+                        <h3>Java Programming</h3>
+                        <p>Intermediate</p>
+                    </div>
+
+                    <span class="skill-status">Available</span>
+                </div>
+
+
+                <div class="dashboard-skill-card">
+                    <div class="dashboard-skill-icon">🌐</div>
+
+                    <div>
+                        <h3>HTML & CSS</h3>
+                        <p>Advanced</p>
+                    </div>
+
+                    <span class="skill-status">Available</span>
+                </div>
+
+
+                <div class="dashboard-skill-card">
+                    <div class="dashboard-skill-icon">💻</div>
+
+                    <div>
+                        <h3>Python</h3>
+                        <p>Intermediate</p>
+                    </div>
+
+                    <span class="skill-status">Available</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Learning -->
+        <section class="dashboard-section">
+
+            <div class="dashboard-section-heading">
+
+                <div>
+                    <p class="dashboard-label">LEARNING GOALS</p>
+                    <h2>Skills I Want to Learn</h2>
+                </div>
+
+                <a href="#" class="outline-btn">
+                    + Add Goal
+                </a>
+
+            </div>
+
+
+            <div class="learning-grid">
+
+                <div class="learning-card">
+                    <span>🎨</span>
+                    <div>
+                        <h3>UI/UX Design</h3>
+                        <p>Looking for a mentor</p>
+                    </div>
+                </div>
+
+
+                <div class="learning-card">
+                    <span>⚛️</span>
+                    <div>
+                        <h3>React Development</h3>
+                        <p>Looking for a mentor</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Swap Requests -->
+        <section class="dashboard-section">
+
+            <div class="dashboard-section-heading">
+
+                <div>
+                    <p class="dashboard-label">ACTIVITY</p>
+                    <h2>Recent Swap Requests</h2>
+                </div>
+
+                <a href="#" class="outline-btn">
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="request-list">
+
+                <div class="request-card">
+
+                    <div class="request-avatar">A</div>
+
+                    <div class="request-info">
+                        <h3>Arun Kumar</h3>
+                        <p>
+                            Wants to learn Java from you
+                        </p>
+                    </div>
+
+                    <span class="request-pending">
+                        Pending
+                    </span>
+
+                    <button class="request-action">
+                        View
+                    </button>
+
+                </div>
+
+
+                <div class="request-card">
+
+                    <div class="request-avatar">M</div>
+
+                    <div class="request-info">
+                        <h3>Meena S</h3>
+                        <p>
+                            Can teach you UI/UX Design
+                        </p>
+                    </div>
+
+                    <span class="request-accepted">
+                        Accepted
+                    </span>
+
+                    <button class="request-action">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+        <section class="dashboard-cta">
+
+            <div>
+                <h2>Ready to learn something new?</h2>
+
+                <p>
+                    Explore skills shared by students in your community.
+                </p>
+            </div>
+
+            <a href="explore.html" class="cta-btn">
+                Explore Skills
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-bottom">
+            <p>© 2026 SkillSwap. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+</body>
+</html>

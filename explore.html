@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSwap - Explore Skills</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9ff;
+            color: #222;
+        }
+
+        nav {
+            min-height: 75px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 60px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.08);
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #635bff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #635bff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 30px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .heading h1 {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .heading p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .search-box {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 500px;
+            max-width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+            transition: transform .2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            margin-bottom: 12px;
+            font-size: 23px;
+            overflow-wrap: anywhere;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 7px 13px;
+            border-radius: 20px;
+            background: #eeecff;
+            color: #635bff;
+            font-size: 13px;
+        }
+
+        .owner {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        .learn-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 18px;
+            background: #635bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .learn-btn:hover {
+            background: #5148e5;
+        }
+
+        .state-message {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .skills {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 20px;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">SkillSwap</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore Skills</a>
+            <a href="http://localhost:5173/">Dashboard</a>
+            <a href="login.html">Login</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="heading">
+            <h1>Explore Skills</h1>
+            <p>Discover skills shared by members of your community.</p>
+        </div>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by skill or category..."
+                aria-label="Search skills"
+            >
+        </div>
+
+        <div class="skills" id="skills">
+            <div class="state-message">Loading skills from the database...</div>
+        </div>
+    </main>
+
+    <script>
+        const API_URL = "http://localhost/SwapSkill/get-skills.php";
+
+        const skillsContainer = document.getElementById("skills");
+        const searchInput = document.getElementById("searchInput");
+
+        let allSkills = [];
+
+        function createElement(tag, className, text) {
+            const element = document.createElement(tag);
+
+            if (className) {
+                element.className = className;
+            }
+
+            element.textContent = text || "";
+            return element;
+        }
+
+        function renderSkills(skills) {
+            skillsContainer.replaceChildren();
+
+            if (skills.length === 0) {
+                skillsContainer.appendChild(
+                    createElement(
+                        "div",
+                        "state-message",
+                        allSkills.length
+                            ? "No skills match your search."
+                            : "No skills have been offered yet."
+                    )
+                );
+                return;
+            }
+
+            skills.forEach(skill => {
+                const card = createElement("article", "card");
+                const title = createElement("h2", "", skill.skill_name);
+                const description = createElement(
+                    "p",
+                    "",
+                    skill.description || "Connect with the owner to learn this skill."
+                );
+                const category = createElement(
+                    "span",
+                    "tag",
+                    skill.category || "General"
+                );
+                const owner = createElement(
+                    "p",
+                    "owner",
+                    "Skill level: " + (skill.level || "Not specified")
+                );
+                const learnButton = createElement("a", "learn-btn", "Learn More");
+
+                learnButton.href =
+                    "skill-details.html?id=" + encodeURIComponent(skill.id);
+
+                card.append(title, description, category, owner, learnButton);
+                skillsContainer.appendChild(card);
+            });
+        }
+
+        function searchSkills() {
+            const query = searchInput.value.trim().toLowerCase();
+
+            const filtered = allSkills.filter(skill =>
+                (skill.skill_name || "").toLowerCase().includes(query) ||
+                (skill.category || "").toLowerCase().includes(query) ||
+                (skill.description || "").toLowerCase().includes(query)
+            );
+
+            renderSkills(filtered);
+        }
+
+        async function loadSkills() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+
+                if (!response.ok || !Array.isArray(data)) {
+                    throw new Error("The server returned an unexpected response.");
+                }
+
+                allSkills = data;
+                searchSkills();
+            } catch (error) {
+                skillsContainer.replaceChildren();
+
+                skillsContainer.appendChild(
+                    createElement(
+                        "div",
+                        "state-message",
+                        "Unable to load skills. Please check that Apache and MySQL are running in XAMPP, then refresh this page."
+                    )
+                );
+
+                console.error("Loading skills failed:", error);
+            }
+        }
+
+        searchInput.addEventListener("input", searchSkills);
+
+        loadSkills();
+    </script>
+</body>
+</html>

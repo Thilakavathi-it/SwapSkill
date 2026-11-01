@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - SkillSwap</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f6ff;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        nav {
+            height: 75px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #635bff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            color: #635bff;
+        }
+
+        /* Login Container */
+        .login-container {
+            width: 100%;
+            min-height: calc(100vh - 75px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-box {
+            background: white;
+            width: 400px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-box h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .login-box .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #635bff;
+        }
+
+        /* Login Button */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #635bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .login-btn:hover {
+            background: #5048e5;
+        }
+
+        /* Register Text */
+        .register-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+
+        .register-text a {
+            color: #635bff;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Register Form */
+        #registerForm {
+            display: none;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .login-box {
+                width: 100%;
+                padding: 30px 25px;
+            }
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">SkillSwap</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Login Section -->
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <!-- Login Form -->
+            <div id="loginForm">
+
+                <h1>Welcome Back!</h1>
+
+                <p class="subtitle">
+                    Login to continue your SkillSwap journey
+                </p>
+
+                <form onsubmit="loginUser(event)">
+
+                    <div class="form-group">
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="Enter your email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        Login
+                    </button>
+
+                </form>
+
+                <p class="register-text">
+                    Don't have an account?
+                    <a onclick="showRegister()">Create Account</a>
+                </p>
+
+            </div>
+
+
+            <!-- Registration Form -->
+            <div id="registerForm">
+
+                <h1>Create Account</h1>
+
+                <p class="subtitle">
+                    Join the SkillSwap community
+                </p>
+
+                <form onsubmit="registerUser(event)">
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+
+                        <input
+                            type="text"
+                            id="registerName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            placeholder="Enter your email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            placeholder="Create a password"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirm your password"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        Create Account
+                    </button>
+
+                </form>
+
+                <p class="register-text">
+                    Already have an account?
+                    <a onclick="showLogin()">Login</a>
+                </p>
+
+            </div>
+
+            <div id="message" class="message"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        function showRegister() {
+
+            document.getElementById("loginForm").style.display = "none";
+
+            document.getElementById("registerForm").style.display = "block";
+
+            document.getElementById("message").innerText = "";
+        }
+
+
+        function showLogin() {
+
+            document.getElementById("registerForm").style.display = "none";
+
+            document.getElementById("loginForm").style.display = "block";
+
+            document.getElementById("message").innerText = "";
+        }
+
+
+        function registerUser(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("registerName").value;
+
+            const email =
+                document.getElementById("registerEmail").value;
+
+            const password =
+                document.getElementById("registerPassword").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            const message =
+                document.getElementById("message");
+
+
+            if (password !== confirmPassword) {
+
+                message.style.color = "red";
+
+                message.innerText =
+                    "Passwords do not match!";
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "skillSwapUser",
+                JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password
+                })
+            );
+
+
+            message.style.color = "green";
+
+            message.innerText =
+                "Account created successfully!";
+
+
+            setTimeout(function () {
+
+                showLogin();
+
+            }, 1500);
+        }
+
+
+        function loginUser(event) {
+
+            event.preventDefault();
+
+            const email =
+                document.getElementById("loginEmail").value;
+
+            const password =
+                document.getElementById("loginPassword").value;
+
+            const message =
+                document.getElementById("message");
+
+
+            const storedUser =
+                localStorage.getItem("skillSwapUser");
+
+
+            if (!storedUser) {
+
+                message.style.color = "red";
+
+                message.innerText =
+                    "No account found. Please create an account first.";
+
+                return;
+            }
+
+
+            const user =
+                JSON.parse(storedUser);
+
+
+            if (
+                email === user.email &&
+                password === user.password
+            ) {
+
+                localStorage.setItem(
+                    "loggedIn",
+                    "true"
+                );
+
+                message.style.color = "green";
+
+                message.innerText =
+                    "Login successful!";
+
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                }, 1000);
+
+            } else {
+
+                message.style.color = "red";
+
+                message.innerText =
+                    "Invalid email or password.";
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
